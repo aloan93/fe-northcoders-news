@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import PageNav from "./PageNav";
 import TopicFilter from "./TopicFilter";
 import { useContext } from "react";
-import { LoadingContext } from "../contexts/Loading";
-import { ErrorContext } from "../contexts/Error";
+import { LoadingContext } from "../contexts/LoadingCon";
+import { ErrorContext } from "../contexts/ErrorCon";
+import Loading from "./Loading";
+import Error from "./Error";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -38,12 +40,14 @@ export default function Articles() {
       );
   }, [page]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (error)
     return (
-      <p>
-        Error: {error.status} {error.message || error.statusText}
-      </p>
+      <Error
+        status={error.status}
+        message={error.message}
+        statusText={error.statusText}
+      />
     );
   return (
     <>
