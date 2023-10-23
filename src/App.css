@@ -1,0 +1,65 @@
+* {
+  background-color: rgb(92, 218, 218);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  margin: auto;
+  width: 95%;
+  padding: 10px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 95vw;
+  margin-bottom: 20px;
+}
+
+nav {
+  padding: 15px 0;
+}
+
+nav a {
+  padding: 0 8px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.topic-filter {
+  padding: 0 5px;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px 0;
+}
+
+.article-title-list {
+  font-size: large;
+  font-weight: bold;
+}
+
+.page-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.page-navigation button {
+  border-radius: 100%;
+  font-size: larger;
+  background-color: dodgerblue;
+}
+
+#current-page {
+  font-size: larger;
+  font-weight: bolder;
+  padding: 0 8px;
+}
