@@ -41,6 +41,7 @@ export default function CommentCard({ comment }) {
         elementVotes={currComment.votes}
         setElement={setCurrComment}
         path="comments"
+        elementAuthor={currComment.author}
       />
     </div>
   );

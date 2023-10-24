@@ -67,6 +67,7 @@ export default function SingleArticle() {
             elementVotes={article.votes}
             setElement={setArticle}
             path="articles"
+            elementAuthor={article.author}
           />
           <Comments article_id={article_id} />
         </>
