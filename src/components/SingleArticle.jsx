@@ -4,11 +4,12 @@ import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
 import VotesManager from "./VotesManager";
+import Comments from "./Comments";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -61,7 +62,9 @@ export default function SingleArticle() {
             elementId={article.article_id}
             elementVotes={article.votes}
             setElement={setArticle}
+            path="articles"
           />
+          <Comments article_id={article_id} />
         </>
       )}
     </div>
