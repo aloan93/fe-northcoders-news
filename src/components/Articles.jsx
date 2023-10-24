@@ -51,6 +51,7 @@ export default function Articles() {
       <TopicFilter />
       <ul>
         {articles.map((article) => {
+          const timeConversion = new Date(article.created_at);
           return (
             <li className="article-card" key={article.article_id}>
               <p className="article-title-list">
@@ -59,7 +60,7 @@ export default function Articles() {
                 </Link>
               </p>
               <p>by {article.author}</p>
-              <p>{article.created_at}</p>
+              <p>{timeConversion.toString()}</p>
               <p>{article.topic}</p>
             </li>
           );
