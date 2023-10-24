@@ -16,7 +16,9 @@ export default function TopicFilter() {
       .then(({ data: { topics } }) => {
         setTopics(topics);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

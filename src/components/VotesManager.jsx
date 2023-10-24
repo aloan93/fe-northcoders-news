@@ -1,0 +1,39 @@
+import { useState } from "react";
+import api from "../api/api";
+import Error from "./Error";
+
+export default function VotesManager({ elementId, elementVotes, setElement }) {
+  const [displayedVotes, setDisplayedVotes] = useState(elementVotes);
+  const [error, setError] = useState(null);
+  const [inputTracker, setInputTracker] = useState(1);
+
+  function manageVote(e) {
+    e.preventDefault();
+    setInputTracker(inputTracker + Number(e.target.value));
+    setDisplayedVotes(displayedVotes + Number(e.target.value));
+    api
+      .patch(`/articles/${elementId}`, { inc_votes: e.target.value })
+      .then(({ data: { article } }) => {
+        setElement(article);
+      })
+      .catch(() => {
+        setError({
+          status: 500,
+          message: "Unable to vote right now. Please try again later",
+        });
+      });
+  }
+
+  if (error) return <Error status={error.status} message={error.message} />;
+  return (
+    <div className="votes-manager">
+      <p>Votes: {displayedVotes}</p>
+      <button onClick={manageVote} value={1} disabled={inputTracker > 1}>
+        +
+      </button>
+      <button onClick={manageVote} value={-1} disabled={inputTracker < 1}>
+        -
+      </button>
+    </div>
+  );
+}

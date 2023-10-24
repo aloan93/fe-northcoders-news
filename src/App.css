@@ -63,3 +63,9 @@ li {
   font-weight: bolder;
   padding: 0 8px;
 }
+
+.article-image {
+  max-width: 80vw;
+  width: 500px;
+  border-radius: 15px;
+}

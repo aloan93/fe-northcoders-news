@@ -3,16 +3,15 @@ import api from "../api/api";
 import { Link } from "react-router-dom";
 import PageNav from "./PageNav";
 import TopicFilter from "./TopicFilter";
-import { useContext } from "react";
-import { LoadingContext } from "../contexts/Loading";
-import { ErrorContext } from "../contexts/Error";
+import Loading from "./Loading";
+import Error from "./Error";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [totalArticleCount, setTotalArticleCount] = useState(null);
   const [page, setPage] = useState(1);
-  const { isLoading, setIsLoading } = useContext(LoadingContext);
-  const { error, setError } = useContext(ErrorContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,12 +37,14 @@ export default function Articles() {
       );
   }, [page]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
   if (error)
     return (
-      <p>
-        Error: {error.status} {error.message || error.statusText}
-      </p>
+      <Error
+        status={error.status}
+        message={error.message}
+        statusText={error.statusText}
+      />
     );
   return (
     <>
