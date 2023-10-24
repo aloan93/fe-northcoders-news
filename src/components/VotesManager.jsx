@@ -2,7 +2,12 @@ import { useState } from "react";
 import api from "../api/api";
 import Error from "./Error";
 
-export default function VotesManager({ elementId, elementVotes, setElement }) {
+export default function VotesManager({
+  elementId,
+  elementVotes,
+  setElement,
+  path,
+}) {
   const [displayedVotes, setDisplayedVotes] = useState(elementVotes);
   const [error, setError] = useState(null);
   const [inputTracker, setInputTracker] = useState(1);
@@ -12,9 +17,9 @@ export default function VotesManager({ elementId, elementVotes, setElement }) {
     setInputTracker(inputTracker + Number(e.target.value));
     setDisplayedVotes(displayedVotes + Number(e.target.value));
     api
-      .patch(`/articles/${elementId}`, { inc_votes: e.target.value })
-      .then(({ data: { article } }) => {
-        setElement(article);
+      .patch(`/${path}/${elementId}`, { inc_votes: e.target.value })
+      .then(({ data }) => {
+        setElement(data.article || data.comment);
       })
       .catch(() => {
         setError({

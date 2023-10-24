@@ -4,6 +4,7 @@ import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
 import VotesManager from "./VotesManager";
+import Comments from "./Comments";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -61,7 +62,9 @@ export default function SingleArticle() {
             elementId={article.article_id}
             elementVotes={article.votes}
             setElement={setArticle}
+            path="articles"
           />
+          <Comments article_id={article_id} setArticle={setArticle} />
         </>
       )}
     </div>
