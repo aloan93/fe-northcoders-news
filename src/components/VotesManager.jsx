@@ -32,12 +32,22 @@ export default function VotesManager({
   if (error) return <Error status={error.status} message={error.message} />;
   return (
     <div className="votes-manager">
-      <p>Votes: {displayedVotes}</p>
-      <button onClick={manageVote} value={1} disabled={inputTracker > 1}>
-        +
+      <p className="votes-tally">Votes: {displayedVotes}</p>
+      <button
+        className="votes-button"
+        aria-label="upvote"
+        onClick={manageVote}
+        value={1}
+        disabled={inputTracker > 1}>
+        👍
       </button>
-      <button onClick={manageVote} value={-1} disabled={inputTracker < 1}>
-        -
+      <button
+        className="votes-button"
+        aria-label="downvote"
+        onClick={manageVote}
+        value={-1}
+        disabled={inputTracker < 1}>
+        👎
       </button>
     </div>
   );

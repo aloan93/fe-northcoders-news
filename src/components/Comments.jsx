@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import CommentCard from "./CommentCard";
 
-export default function Comments({ article_id, setArticle }) {
+export default function Comments({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
@@ -43,7 +43,7 @@ export default function Comments({ article_id, setArticle }) {
     );
   return (
     <details>
-      <summary>Comments</summary>
+      <summary className="comments-dropdown">Comments</summary>
       <ul>
         {comments.map((comment) => {
           return (

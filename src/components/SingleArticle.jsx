@@ -64,7 +64,7 @@ export default function SingleArticle() {
             setElement={setArticle}
             path="articles"
           />
-          <Comments article_id={article_id} setArticle={setArticle} />
+          <Comments article_id={article_id} />
         </>
       )}
     </div>
