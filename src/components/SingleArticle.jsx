@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/api";
-import { LoadingContext } from "../contexts/LoadingCon";
-import { ErrorContext } from "../contexts/ErrorCon";
 import Loading from "./Loading";
 import Error from "./Error";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
-  const { isLoading, setIsLoading } = useContext(LoadingContext);
-  const { error, setError } = useContext(ErrorContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
