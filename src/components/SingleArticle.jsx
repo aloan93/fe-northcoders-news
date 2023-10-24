@@ -9,7 +9,7 @@ import Comments from "./Comments";
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {

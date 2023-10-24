@@ -10,7 +10,7 @@ export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [totalArticleCount, setTotalArticleCount] = useState(null);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {

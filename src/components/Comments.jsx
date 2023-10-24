@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
-import VotesManager from "./VotesManager";
 import CommentCard from "./CommentCard";
 
 export default function Comments({ article_id, setArticle }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
 
