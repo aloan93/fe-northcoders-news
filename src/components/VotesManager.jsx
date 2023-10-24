@@ -1,40 +1,37 @@
 import { useState } from "react";
 import api from "../api/api";
+import Error from "./Error";
 
-export default function VotesManager({
-  elementId,
-  elementVotes,
-  //   setVotes,
-  setArticle,
-}) {
+export default function VotesManager({ elementId, elementVotes, setElement }) {
   const [displayedVotes, setDisplayedVotes] = useState(elementVotes);
+  const [error, setError] = useState(null);
+  const [inputTracker, setInputTracker] = useState(1);
 
   function manageVote(e) {
     e.preventDefault();
+    setInputTracker(inputTracker + Number(e.target.value));
     setDisplayedVotes(displayedVotes + Number(e.target.value));
     api
-      .patch(`/articles/${elementId}`, { votes: e.target.value })
+      .patch(`/articles/${elementId}`, { inc_votes: e.target.value })
       .then(({ data: { article } }) => {
-        setArticle(article);
+        setElement(article);
       })
-      .catch(
-        ({
-          response: {
-            data: { message },
-            status,
-            statusText,
-          },
-        }) => {}
-      );
+      .catch(() => {
+        setError({
+          status: 500,
+          message: "Unable to vote right now. Please try again later",
+        });
+      });
   }
 
+  if (error) return <Error status={error.status} message={error.message} />;
   return (
     <div className="votes-manager">
-      <p>Votes: {elementVotes}</p>
-      <button onClick={manageVote} value={1}>
+      <p>Votes: {displayedVotes}</p>
+      <button onClick={manageVote} value={1} disabled={inputTracker > 1}>
         +
       </button>
-      <button onClick={manageVote} value={-1}>
+      <button onClick={manageVote} value={-1} disabled={inputTracker < 1}>
         -
       </button>
     </div>

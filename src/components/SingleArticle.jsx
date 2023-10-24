@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
+import VotesManager from "./VotesManager";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -56,7 +57,11 @@ export default function SingleArticle() {
             alt={`an author supplied image to make the article`}
           />
           <article>{article.body}</article>
-          <p>Votes: {article.votes}</p>
+          <VotesManager
+            elementId={article.article_id}
+            elementVotes={article.votes}
+            setElement={setArticle}
+          />
         </>
       )}
     </div>
