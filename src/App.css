@@ -26,8 +26,21 @@ nav a {
 }
 
 .topic-filter {
+  font-size: medium;
   padding: 0 5px;
   margin: 10px 0;
+}
+
+.topic-filter-link {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-weight: 500;
+  background-color: rgba(245, 245, 245, 0.87);
+}
+
+.topic-curr-filter {
+  font-size: large;
 }
 
 ul {
