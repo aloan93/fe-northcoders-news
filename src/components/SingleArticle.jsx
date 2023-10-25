@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
@@ -55,7 +55,11 @@ export default function SingleArticle() {
           <h2>{article.title}</h2>
           <h3>by {article.author}</h3>
           <p>{timeConversion.toString()}</p>
-          <p>{article.topic}</p>
+          <p>
+            <Link to={`/articles/topics/${article.topic}`}>
+              {article.topic}
+            </Link>
+          </p>
           <img
             className="article-image"
             src={article.article_img_url}

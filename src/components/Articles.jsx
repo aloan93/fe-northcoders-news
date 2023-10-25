@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageNav from "./PageNav";
 import TopicFilter from "./TopicFilter";
 import Loading from "./Loading";
@@ -12,12 +12,13 @@ export default function Articles() {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { topic } = useParams(null);
 
   useEffect(() => {
     setIsLoading(true);
     setError(null);
     api
-      .get(`/articles?p=${page}`)
+      .get(`/articles?${topic ? `topic=${topic}&p=${page}` : `p=${page}`}`)
       .then(({ data: { total_count, articles } }) => {
         setIsLoading(false);
         setArticles(articles);
@@ -35,7 +36,7 @@ export default function Articles() {
           setError({ status, message, statusText });
         }
       );
-  }, [page]);
+  }, [page, topic]);
 
   if (isLoading) return <Loading />;
   if (error)
@@ -48,7 +49,7 @@ export default function Articles() {
     );
   return (
     <>
-      <TopicFilter />
+      <TopicFilter currTopic={topic} />
       <ul>
         {articles.map((article) => {
           const timeConversion = new Date(article.created_at);
@@ -61,7 +62,11 @@ export default function Articles() {
               </p>
               <p>by {article.author}</p>
               <p>{timeConversion.toString()}</p>
-              <p>{article.topic}</p>
+              <p>
+                <Link to={`/articles/topics/${article.topic}`}>
+                  {article.topic}
+                </Link>
+              </p>
             </li>
           );
         })}
