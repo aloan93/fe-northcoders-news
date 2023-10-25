@@ -13,6 +13,7 @@ export default function CommentInput({ article_id, comments, setComments }) {
   function postComment(e) {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     api
       .post(`/articles/${article_id}/comments`, {
         username: user,
@@ -31,24 +32,28 @@ export default function CommentInput({ article_id, comments, setComments }) {
       });
   }
 
-  if (error) return <Error status={error.status} message={error.message} />;
   return (
     <>
-      <form onSubmit={postComment} id="post-comment">
-        <label>
-          Post a comment:
-          <input
-            id="post-comment"
-            type="text"
-            value={newInput}
-            onChange={(e) => {
-              setNewInput(e.target.value);
-            }}
-          />
-        </label>
-        {!isLoading && <button>Submit</button>}
-        {isLoading && <Loading />}
+      <form onSubmit={postComment} className="comment-form">
+        <label htmlFor="comment-body">Post a comment:</label>
+
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div>
+            <input
+              id="comment-body"
+              type="text"
+              value={newInput}
+              onChange={(e) => {
+                setNewInput(e.target.value);
+              }}
+            />
+            <button>Submit</button>
+          </div>
+        )}
       </form>
+      {error && <Error status={error.status} message={error.message} />}
     </>
   );
 }
