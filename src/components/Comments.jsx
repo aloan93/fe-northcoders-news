@@ -3,6 +3,7 @@ import api from "../api/api";
 import Loading from "./Loading";
 import Error from "./Error";
 import CommentCard from "./CommentCard";
+import CommentInput from "./CommentInput";
 
 export default function Comments({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,15 +45,23 @@ export default function Comments({ article_id }) {
   return (
     <details>
       <summary className="comments-dropdown">Comments</summary>
-      <ul>
-        {comments.map((comment) => {
-          return (
-            <li key={comment.comment_id}>
-              <CommentCard comment={comment} />
-            </li>
-          );
-        })}
-      </ul>
+      <CommentInput
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
+      {comments.length === 0 && <p>No comments to show yet</p>}
+      {comments.length > 0 && (
+        <ul>
+          {comments.map((comment) => {
+            return (
+              <li key={comment.comment_id}>
+                <CommentCard comment={comment} />
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </details>
   );
 }

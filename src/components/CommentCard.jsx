@@ -7,6 +7,7 @@ export default function CommentCard({ comment }) {
   const [currComment, setCurrComment] = useState(comment);
   const [authorAvatar, setAuthorAvatar] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const timeConversion = new Date(currComment.created_at);
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,13 +34,13 @@ export default function CommentCard({ comment }) {
         />
         <p className="comment-author">{currComment.author}</p>
       </div>
-      <p className="comment-timestamp">{currComment.created_at}</p>
+      <p className="comment-timestamp">{timeConversion.toString()}</p>
       <p>{currComment.body}</p>
       <VotesManager
         elementId={currComment.comment_id}
         elementVotes={currComment.votes}
-        setElement={setCurrComment}
         path="comments"
+        elementAuthor={currComment.author}
       />
     </div>
   );

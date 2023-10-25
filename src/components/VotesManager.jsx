@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import api from "../api/api";
 import Error from "./Error";
+import { UserContext } from "../contexts/User";
 
 export default function VotesManager({
   elementId,
   elementVotes,
-  setElement,
   path,
+  elementAuthor,
 }) {
   const [displayedVotes, setDisplayedVotes] = useState(elementVotes);
   const [error, setError] = useState(null);
   const [inputTracker, setInputTracker] = useState(1);
+  const { user } = useContext(UserContext);
 
   function manageVote(e) {
     e.preventDefault();
@@ -18,10 +20,9 @@ export default function VotesManager({
     setDisplayedVotes(displayedVotes + Number(e.target.value));
     api
       .patch(`/${path}/${elementId}`, { inc_votes: e.target.value })
-      .then(({ data }) => {
-        setElement(data.article || data.comment);
-      })
       .catch(() => {
+        setInputTracker(1);
+        setDisplayedVotes(displayedVotes);
         setError({
           status: 500,
           message: "Unable to vote right now. Please try again later",
@@ -29,26 +30,32 @@ export default function VotesManager({
       });
   }
 
-  if (error) return <Error status={error.status} message={error.message} />;
   return (
-    <div className="votes-manager">
-      <p className="votes-tally">Votes: {displayedVotes}</p>
-      <button
-        className="votes-button"
-        aria-label="upvote"
-        onClick={manageVote}
-        value={1}
-        disabled={inputTracker > 1}>
-        👍
-      </button>
-      <button
-        className="votes-button"
-        aria-label="downvote"
-        onClick={manageVote}
-        value={-1}
-        disabled={inputTracker < 1}>
-        👎
-      </button>
-    </div>
+    <>
+      <div className="votes-manager">
+        <p className="votes-tally">Votes: {displayedVotes}</p>
+        {user !== elementAuthor && (
+          <>
+            <button
+              className="votes-button"
+              aria-label="upvote"
+              onClick={manageVote}
+              value={1}
+              disabled={inputTracker > 1}>
+              👍
+            </button>
+            <button
+              className="votes-button"
+              aria-label="downvote"
+              onClick={manageVote}
+              value={-1}
+              disabled={inputTracker < 1}>
+              👎
+            </button>
+          </>
+        )}
+      </div>
+      {error && <Error status={error.status} message={error.message} />}
+    </>
   );
 }

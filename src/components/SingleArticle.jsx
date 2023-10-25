@@ -11,6 +11,10 @@ export default function SingleArticle() {
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  let timeConversion;
+  if (article) {
+    timeConversion = new Date(article.created_at);
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,11 +50,11 @@ export default function SingleArticle() {
     );
   return (
     <div className="single-article">
-      {article && (
+      {article && timeConversion && (
         <>
           <h2>{article.title}</h2>
           <h3>by {article.author}</h3>
-          <p>{article.created_at}</p>
+          <p>{timeConversion.toString()}</p>
           <p>{article.topic}</p>
           <img
             className="article-image"
@@ -61,8 +65,8 @@ export default function SingleArticle() {
           <VotesManager
             elementId={article.article_id}
             elementVotes={article.votes}
-            setElement={setArticle}
             path="articles"
+            elementAuthor={article.author}
           />
           <Comments article_id={article_id} />
         </>
