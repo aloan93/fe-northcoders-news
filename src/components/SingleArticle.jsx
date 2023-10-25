@@ -65,7 +65,6 @@ export default function SingleArticle() {
           <VotesManager
             elementId={article.article_id}
             elementVotes={article.votes}
-            setElement={setArticle}
             path="articles"
             elementAuthor={article.author}
           />

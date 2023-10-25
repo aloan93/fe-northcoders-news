@@ -39,7 +39,6 @@ export default function CommentCard({ comment }) {
       <VotesManager
         elementId={currComment.comment_id}
         elementVotes={currComment.votes}
-        setElement={setCurrComment}
         path="comments"
         elementAuthor={currComment.author}
       />
