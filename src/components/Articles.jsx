@@ -5,6 +5,8 @@ import PageNav from "./PageNav";
 import TopicFilter from "./TopicFilter";
 import Loading from "./Loading";
 import Error from "./Error";
+import SortBy from "./SortBy";
+import Order from "./Order";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -13,12 +15,20 @@ export default function Articles() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { topic } = useParams(null);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
 
   useEffect(() => {
     setIsLoading(true);
     setError(null);
     api
-      .get(`/articles?${topic ? `topic=${topic}&p=${page}` : `p=${page}`}`)
+      .get(
+        `/articles?${
+          topic
+            ? `topic=${topic}&sort_by=${sortBy}&order=${order}&p=${page}`
+            : `sort_by=${sortBy}&order=${order}&p=${page}`
+        }`
+      )
       .then(({ data: { total_count, articles } }) => {
         setIsLoading(false);
         setArticles(articles);
@@ -36,7 +46,7 @@ export default function Articles() {
           setError({ status, message, statusText });
         }
       );
-  }, [page, topic]);
+  }, [page, topic, sortBy, order]);
 
   if (isLoading) return <Loading />;
   if (error)
@@ -50,6 +60,11 @@ export default function Articles() {
   return (
     <>
       <TopicFilter currTopic={topic} />
+      <div className="radio-options">
+        <SortBy sortBy={sortBy} setSortBy={setSortBy} />
+        <Order order={order} setOrder={setOrder} />
+      </div>
+
       <ul>
         {articles.map((article) => {
           const timeConversion = new Date(article.created_at);
@@ -62,11 +77,15 @@ export default function Articles() {
               </p>
               <p>by {article.author}</p>
               <p>{timeConversion.toString()}</p>
-              <p>
-                <Link to={`/articles/topics/${article.topic}`}>
-                  {article.topic}
-                </Link>
-              </p>
+              {!topic && (
+                <p>
+                  <Link to={`/articles/topics/${article.topic}`}>
+                    {article.topic}
+                  </Link>
+                </p>
+              )}
+              <p>Votes: {article.votes}</p>
+              <p>Comment Count: {article.comment_count}</p>
             </li>
           );
         })}

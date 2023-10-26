@@ -43,6 +43,22 @@ nav a {
   font-size: large;
 }
 
+.radio-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.radio-labels {
+  padding: 0 5px;
+}
+
 ul {
   list-style: none;
   padding: 0;
