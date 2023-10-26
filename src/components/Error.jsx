@@ -1,8 +1,3 @@
 export default function Error({ error }) {
-  return (
-    <>
-      {/* <p>Error: {status}</p> */}
-      <p>{error}</p>
-    </>
-  );
+  return <p className="error-log">{error}</p>;
 }

@@ -31,8 +31,12 @@ export default function Articles() {
       )
       .then(({ data: { total_count, articles } }) => {
         setIsLoading(false);
-        setArticles(articles);
-        setTotalArticleCount(total_count);
+        if (total_count > 0) {
+          setArticles(articles);
+          setTotalArticleCount(total_count);
+        } else {
+          setError("No articles to display");
+        }
       })
       .catch(() => {
         setIsLoading(false);

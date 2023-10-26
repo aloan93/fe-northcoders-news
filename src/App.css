@@ -174,3 +174,10 @@ li {
   margin: 0 5px;
   background-color: rgba(245, 245, 245, 0.87);
 }
+
+.error-log {
+  border: 2px solid rgb(61, 1, 1);
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: rgb(243, 148, 148);
+}
