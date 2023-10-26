@@ -5,7 +5,7 @@ import Error from "./Error";
 import CommentCard from "./CommentCard";
 import CommentInput from "./CommentInput";
 
-export default function Comments({ article_id }) {
+export default function Comments({ article_id, comment_count }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
@@ -44,7 +44,9 @@ export default function Comments({ article_id }) {
     );
   return (
     <details>
-      <summary className="comments-dropdown">Comments</summary>
+      <summary className="comments-dropdown">
+        Comments ({comment_count})
+      </summary>
       <CommentInput
         article_id={article_id}
         comments={comments}
