@@ -53,9 +53,7 @@ export default function TopicFilter({ currTopic }) {
         )}
       </form>
       {chosenFilter && (
-        <Link
-          className="topic-filter-link"
-          to={`/articles/topics/${chosenFilter}`}>
+        <Link className="topic-filter-link" to={`/topics/${chosenFilter}`}>
           Filter
         </Link>
       )}

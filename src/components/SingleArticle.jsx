@@ -45,20 +45,18 @@ export default function SingleArticle() {
     <div className="single-article">
       {article && timeConversion && (
         <>
-          <h2>{article.title}</h2>
-          <h3>by {article.author}</h3>
-          <p>{timeConversion.toString()}</p>
-          <p>
-            <Link to={`/articles/topics/${article.topic}`}>
-              {article.topic}
-            </Link>
+          <h2 className="article-title">{article.title}</h2>
+          <h3 className="article-author">by {article.author}</h3>
+          <p className="article-date">{timeConversion.toString()}</p>
+          <p className="article-topic">
+            <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
           </p>
           <img
             className="article-image"
             src={article.article_img_url}
             alt={`an author supplied image to make the article`}
           />
-          <article>{article.body}</article>
+          <article className="article-body">{article.body}</article>
           <VotesManager
             elementId={article.article_id}
             elementVotes={article.votes}

@@ -35,7 +35,7 @@ export default function Articles() {
           setArticles(articles);
           setTotalArticleCount(total_count);
         } else {
-          setError("No articles to display");
+          setError("Oops! That topic does not exist");
         }
       })
       .catch(() => {
@@ -68,9 +68,7 @@ export default function Articles() {
               <p>{timeConversion.toString()}</p>
               {!topic && (
                 <p>
-                  <Link to={`/articles/topics/${article.topic}`}>
-                    {article.topic}
-                  </Link>
+                  <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
                 </p>
               )}
               <p>Votes: {article.votes}</p>
