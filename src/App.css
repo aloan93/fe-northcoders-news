@@ -151,6 +151,13 @@ li {
   font-size: small;
 }
 
+.delete-button {
+  background-color: rgb(243, 148, 148);
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
 .votes-manager {
   display: flex;
   align-items: center;
