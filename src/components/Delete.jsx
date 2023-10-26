@@ -28,7 +28,13 @@ export default function Delete({ comment_id, setIsDeleted }) {
 
   return (
     <>
-      {!isLoading ? <button onClick={deleteComment}>🗑</button> : <Loading />}
+      {!isLoading ? (
+        <button className="delete-button" onClick={deleteComment}>
+          Delete
+        </button>
+      ) : (
+        <Loading />
+      )}
       {error && <Error status={error.status} message={error.message} />}
     </>
   );
