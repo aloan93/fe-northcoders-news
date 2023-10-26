@@ -19,29 +19,16 @@ export default function Comments({ article_id, comment_count }) {
         setComments(comments);
         setIsLoading(false);
       })
-      .catch(
-        ({
-          response: {
-            data: { message },
-            status,
-            statusText,
-          },
-        }) => {
-          setError({ status, message, statusText });
-          setIsLoading(false);
-        }
-      );
+      .catch(() => {
+        setError(
+          "Oops! Can't display comments right now. Please try again later"
+        );
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) return <Loading />;
-  if (error)
-    return (
-      <Error
-        status={error.status}
-        message={error.message}
-        statusText={error.statusText}
-      />
-    );
+  if (error) return <Error error={error} />;
   return (
     <details>
       <summary className="comments-dropdown">

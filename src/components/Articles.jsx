@@ -34,29 +34,14 @@ export default function Articles() {
         setArticles(articles);
         setTotalArticleCount(total_count);
       })
-      .catch(
-        ({
-          response: {
-            data: { message },
-            status,
-            statusText,
-          },
-        }) => {
-          setIsLoading(false);
-          setError({ status, message, statusText });
-        }
-      );
+      .catch(() => {
+        setIsLoading(false);
+        setError("Oops! Something went wrong. Please try again later");
+      });
   }, [page, topic, sortBy, order]);
 
   if (isLoading) return <Loading />;
-  if (error)
-    return (
-      <Error
-        status={error.status}
-        message={error.message}
-        statusText={error.statusText}
-      />
-    );
+  if (error) return <Error error={error} />;
   return (
     <>
       <TopicFilter currTopic={topic} />

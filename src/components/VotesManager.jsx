@@ -16,6 +16,7 @@ export default function VotesManager({
 
   function manageVote(e) {
     e.preventDefault();
+    setError(null);
     setInputTracker(inputTracker + Number(e.target.value));
     setDisplayedVotes(displayedVotes + Number(e.target.value));
     api
@@ -23,10 +24,7 @@ export default function VotesManager({
       .catch(() => {
         setInputTracker(1);
         setDisplayedVotes(displayedVotes);
-        setError({
-          status: 500,
-          message: "Unable to vote right now. Please try again later",
-        });
+        setError("Unable to vote right now. Please try again later");
       });
   }
 
@@ -55,7 +53,7 @@ export default function VotesManager({
           </>
         )}
       </div>
-      {error && <Error status={error.status} message={error.message} />}
+      {error && <Error error={error} />}
     </>
   );
 }

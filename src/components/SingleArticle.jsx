@@ -25,29 +25,22 @@ export default function SingleArticle() {
         setIsLoading(false);
         setArticle(article);
       })
-      .catch(
-        ({
-          response: {
-            data: { message },
-            status,
-            statusText,
-          },
-        }) => {
-          setIsLoading(false);
-          setError({ status, message, statusText });
+      .catch(({ response: { status } }) => {
+        setIsLoading(false);
+        if (status === 404) {
+          setError("Oops! Could not find the article you are looking for");
+        } else if (status === 400) {
+          setError(
+            "Oops! I can only find articles on whole, postive, numerical values (eg. 1, 5, 38 etc.)"
+          );
+        } else {
+          setError("Oops! Something went wrong. Please try again later");
         }
-      );
+      });
   }, []);
 
   if (isLoading) return <Loading />;
-  if (error)
-    return (
-      <Error
-        status={error.status}
-        message={error.message}
-        statusText={error.statusText}
-      />
-    );
+  if (error) return <Error error={error} />;
   return (
     <div className="single-article">
       {article && timeConversion && (

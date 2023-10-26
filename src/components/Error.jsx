@@ -1,7 +1,8 @@
-export default function Error({ status, message, statusText }) {
+export default function Error({ error }) {
   return (
-    <p>
-      Error: {status} {message || statusText}
-    </p>
+    <>
+      {/* <p>Error: {status}</p> */}
+      <p>{error}</p>
+    </>
   );
 }
