@@ -19,10 +19,7 @@ export default function Delete({ comment_id, setIsDeleted }) {
       })
       .catch(() => {
         setIsLoading(false);
-        setError({
-          status: 500,
-          message: "Unable to delete right now. Please try again later",
-        });
+        setError("Unable to delete right now. Please try again later");
       });
   }
 
@@ -35,7 +32,7 @@ export default function Delete({ comment_id, setIsDeleted }) {
       ) : (
         <Loading />
       )}
-      {error && <Error status={error.status} message={error.message} />}
+      {error && <Error error={error} />}
     </>
   );
 }

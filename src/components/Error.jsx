@@ -1,7 +1,3 @@
-export default function Error({ status, message, statusText }) {
-  return (
-    <p>
-      Error: {status} {message || statusText}
-    </p>
-  );
+export default function Error({ error }) {
+  return <p className="error-log">{error}</p>;
 }

@@ -12,24 +12,23 @@ export default function CommentInput({ article_id, comments, setComments }) {
 
   function postComment(e) {
     e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    api
-      .post(`/articles/${article_id}/comments`, {
-        username: user,
-        body: newInput,
-      })
-      .then(({ data: { comment } }) => {
-        setComments([comment, ...comments]);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setError({
-          status: 500,
-          message: "Unable to comment right now. Please try again later",
+    if (newInput) {
+      setIsLoading(true);
+      setError(null);
+      api
+        .post(`/articles/${article_id}/comments`, {
+          username: user,
+          body: newInput,
+        })
+        .then(({ data: { comment } }) => {
+          setComments([comment, ...comments]);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setError("Oops! Unable to comment right now. Please try again later");
+          setIsLoading(false);
         });
-        setIsLoading(false);
-      });
+    } else setError("Oops! Cannot post an empty comment");
   }
 
   return (
@@ -53,7 +52,7 @@ export default function CommentInput({ article_id, comments, setComments }) {
           </div>
         )}
       </form>
-      {error && <Error status={error.status} message={error.message} />}
+      {error && <Error error={error} />}
     </>
   );
 }
