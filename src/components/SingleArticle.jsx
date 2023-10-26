@@ -72,7 +72,10 @@ export default function SingleArticle() {
             path="articles"
             elementAuthor={article.author}
           />
-          <Comments article_id={article_id} />
+          <Comments
+            article_id={article_id}
+            comment_count={article.comment_count}
+          />
         </>
       )}
     </div>
