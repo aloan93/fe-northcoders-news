@@ -41,11 +41,13 @@ export default function ArticleCard({ article, timeConversion, topic }) {
           <p>Comment Count: {article.comment_count}</p>
         </div>
       </div>
-      <img
-        className="article-card-image"
-        src={articleImage}
-        alt="image to reflect the content of the article"
-      />
+      <Link to={`/articles/${article.article_id}`}>
+        <img
+          className="article-card-image"
+          src={articleImage}
+          alt="image to reflect the content of the article"
+        />
+      </Link>
     </div>
   );
 }
