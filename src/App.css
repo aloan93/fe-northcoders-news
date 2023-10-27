@@ -152,9 +152,9 @@ li {
 }
 
 .page-navigation button {
-  border-radius: 100%;
+  border-radius: 8px;
   font-size: larger;
-  background-color: dodgerblue;
+  background-color: #f4f0fa;
 }
 
 #current-page {
