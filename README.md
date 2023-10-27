@@ -9,6 +9,7 @@ A news article web application where users can browse a whole host of articles. 
 This application was made in conjunction with the Northcoders News API as a full stack portfolio project during the Northcoders Software Development Bootcamp.
 
 API Repo --> https://github.com/aloan93/be-northcoders-news
+
 API host --> https://northcoders-news-3948.onrender.com/api
 
 ## Getting Started
