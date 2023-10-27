@@ -2,11 +2,14 @@
 
 Deployed here --> https://fe-northcoders-news.netlify.app/
 
-A news article web application where users can browse a whole host of articles. Articles can be filtered by topic, as well as sorted and ordered. Articles can be viewed in isolation by clicking the article title; from here users can interact with the article by upvoting and downvoting. Articles also feature a comments section where users can post their own comments, as well as upvote and downvote on other user's comments. Users can delete their own comments only.
+A news article web application where users can browse a whole host of articles. Articles can be filtered by topic, as well as sorted and ordered. Articles can be viewed in isolation by clicking the article title; from here users can interact with the article by upvoting and downvoting. Articles also feature a comments section where users can post their own comments by entering text into the field provided and clicking 'submit', as well as upvote and downvote on other user's comments. Users can delete their own comments only.
 
-This application was made in conjunction with the Northcoders News API as a full stack portfolio project during the Northcoders Software Development Bootcamp. The repo for the api can be found...
+**PS. for the purposes of this project the logged in user has been hard coded to be 'happyamy2016'**
 
-Here! --> https://github.com/aloan93/be-northcoders-news
+This application was made in conjunction with the Northcoders News API as a full stack portfolio project during the Northcoders Software Development Bootcamp.
+
+API Repo --> https://github.com/aloan93/be-northcoders-news
+API host --> https://northcoders-news-3948.onrender.com/api
 
 ## Getting Started
 
