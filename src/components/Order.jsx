@@ -1,6 +1,7 @@
-export default function Order({ order, setOrder }) {
+export default function Order({ order, setOrder, setPage }) {
   function inputOrder(e) {
     setOrder(e.target.value);
+    setPage(1);
   }
 
   return (

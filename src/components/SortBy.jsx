@@ -1,6 +1,7 @@
-export default function SortBy({ sortBy, setSortBy }) {
+export default function SortBy({ sortBy, setSortBy, setPage }) {
   function inputSortBy(e) {
     setSortBy(e.target.value);
+    setPage(1);
   }
 
   return (

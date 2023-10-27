@@ -48,10 +48,10 @@ export default function Articles() {
   if (error) return <Error error={error} />;
   return (
     <>
-      <TopicFilter currTopic={topic} />
+      <TopicFilter currTopic={topic} setPage={setPage} />
       <div className="radio-options">
-        <SortBy sortBy={sortBy} setSortBy={setSortBy} />
-        <Order order={order} setOrder={setOrder} />
+        <SortBy sortBy={sortBy} setSortBy={setSortBy} setPage={setPage} />
+        <Order order={order} setOrder={setOrder} setPage={setPage} />
       </div>
 
       <ul>

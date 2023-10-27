@@ -3,13 +3,17 @@ import api from "../api/api";
 import { Link } from "react-router-dom";
 import Error from "./Error";
 
-export default function TopicFilter({ currTopic }) {
+export default function TopicFilter({ currTopic, setPage }) {
   const [topics, setTopics] = useState([]);
   const [chosenFilter, setChosenFilter] = useState(null);
   const [error, setError] = useState(null);
 
   function catchFilter(e) {
     setChosenFilter(e.target.value);
+  }
+
+  function resetPage() {
+    setPage(1);
   }
 
   useEffect(() => {
@@ -53,7 +57,10 @@ export default function TopicFilter({ currTopic }) {
         )}
       </form>
       {chosenFilter && (
-        <Link className="topic-filter-link" to={`/topics/${chosenFilter}`}>
+        <Link
+          onClick={resetPage}
+          className="topic-filter-link"
+          to={`/topics/${chosenFilter}`}>
           Filter
         </Link>
       )}
