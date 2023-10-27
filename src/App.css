@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-  color: #5d5f71;
+  color: #373943;
   text-align: center;
 }
 
@@ -43,20 +43,23 @@ main {
 
 .topic-filter {
   font-size: medium;
+  font-weight: 500;
   padding: 0 5px;
-  margin: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .topic-filter-link {
-  border: 1px solid black;
   border-radius: 10px;
   padding: 5px 10px;
   font-weight: 500;
-  background-color: rgba(245, 245, 245, 0.87);
+  background-color: #f4f0fa;
+  margin-bottom: 8px;
 }
 
 .topic-curr-filter {
   font-size: large;
+  font-weight: 500;
 }
 
 .radio-options {
@@ -69,10 +72,17 @@ fieldset {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border-radius: 10px;
+  border-color: #412531;
+  font-weight: 500;
 }
 
 .radio-labels {
   padding: 0 5px;
+}
+
+input[type="radio"] {
+  background-color: #f4f0fa;
 }
 
 ul {
@@ -178,7 +188,11 @@ li {
 
 .article-body {
   max-width: 650px;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #f4f0fa;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .article-image {
@@ -218,7 +232,6 @@ li {
 
 .comment-card,
 .article-card {
-  border: 1px black solid;
   border-radius: 10px;
   background-color: #e3d8f1;
   padding: 10px;
@@ -250,7 +263,7 @@ li {
   background-color: rgb(243, 148, 148);
   border-radius: 10px;
   padding: 5px 10px;
-  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .votes-manager {
@@ -261,13 +274,19 @@ li {
 
 .votes-tally {
   font-weight: bold;
+  margin-right: 5px;
 }
 
 .votes-button {
   border-radius: 8px;
   padding: 3px;
   margin: 0 5px;
-  background-color: rgba(245, 245, 245, 0.87);
+  background-color: #f4f0fa;
+}
+
+.comment-votes-delete {
+  display: flex;
+  align-items: center;
 }
 
 .error-log {

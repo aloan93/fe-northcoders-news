@@ -44,18 +44,20 @@ export default function CommentCard({ comment }) {
           </div>
           <p className="comment-timestamp">{timeConversion.toString()}</p>
           <p>{currComment.body}</p>
-          <VotesManager
-            elementId={currComment.comment_id}
-            elementVotes={currComment.votes}
-            path="comments"
-            elementAuthor={currComment.author}
-          />
-          {user === currComment.author && (
-            <Delete
-              comment_id={currComment.comment_id}
-              setIsDeleted={setIsDeleted}
+          <div className="comment-votes-delete">
+            <VotesManager
+              elementId={currComment.comment_id}
+              elementVotes={currComment.votes}
+              path="comments"
+              elementAuthor={currComment.author}
             />
-          )}
+            {user === currComment.author && (
+              <Delete
+                comment_id={currComment.comment_id}
+                setIsDeleted={setIsDeleted}
+              />
+            )}
+          </div>
         </>
       ) : (
         <p>Successfully Deleted</p>
