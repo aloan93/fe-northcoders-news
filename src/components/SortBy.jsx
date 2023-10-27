@@ -52,5 +52,3 @@ export default function SortBy({ sortBy, setSortBy, setPage }) {
     </form>
   );
 }
-
-// article_id, created_at (default), votes, comment_count, title
