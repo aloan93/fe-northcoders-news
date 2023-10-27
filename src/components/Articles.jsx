@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import SortBy from "./SortBy";
 import Order from "./Order";
+import ArticleCard from "./ArticleCard";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -58,21 +59,12 @@ export default function Articles() {
         {articles.map((article) => {
           const timeConversion = new Date(article.created_at);
           return (
-            <li className="article-card" key={article.article_id}>
-              <p className="article-title-list">
-                <Link to={`/articles/${article.article_id}`}>
-                  {article.title}
-                </Link>
-              </p>
-              <p>by {article.author}</p>
-              <p>{timeConversion.toString()}</p>
-              {!topic && (
-                <p>
-                  <Link to={`/topics/${article.topic}`}>{article.topic}</Link>
-                </p>
-              )}
-              <p>Votes: {article.votes}</p>
-              <p>Comment Count: {article.comment_count}</p>
+            <li key={article.article_id}>
+              <ArticleCard
+                article={article}
+                timeConversion={timeConversion}
+                topic={topic}
+              />
             </li>
           );
         })}

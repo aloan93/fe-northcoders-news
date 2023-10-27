@@ -25,10 +25,6 @@ nav a {
   font-weight: bold;
 }
 
-a {
-  font-weight: bold;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -72,7 +68,6 @@ fieldset {
 ul {
   list-style: none;
   padding: 0;
-  align-self: flex-start;
   max-width: 630px;
 }
 
@@ -80,9 +75,55 @@ li {
   padding: 5px 0;
 }
 
-.article-title-list {
+.article-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-card-info {
+  margin-right: 10px;
+  width: 348px;
+  max-width: 80vw;
+}
+
+.article-card-title {
   font-size: large;
   font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.article-card-author {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.article-card-date {
+  font-size: small;
+  margin: 10px 0;
+}
+
+.article-card-topic {
+  margin: 10px 0;
+}
+
+.article-card-metrics {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.article-card-metrics p {
+  margin: 0;
+}
+
+.article-card-image {
+  max-width: 70vw;
+  width: 250px;
+  border-radius: 15px;
 }
 
 .page-navigation {
@@ -148,6 +189,7 @@ li {
 .comment-form {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .comment-form label {
@@ -164,7 +206,8 @@ li {
   margin-left: 10px;
 }
 
-.comment-card {
+.comment-card,
+.article-card {
   border: 1px black solid;
   border-radius: 10px;
   background-color: rgba(245, 245, 245, 0.678);
